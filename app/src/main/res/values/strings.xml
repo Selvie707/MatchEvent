@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">EventMatchmaker</string>
+    <string name="event_name">Event Name</string>
+    <string name="event_location">Event Location</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="add_event">Add Event</string>
+    <string name="log_out">Log Out</string>
+    <string name="calender">Calender</string>
+    <string name="ticket_price">Ticket Price</string>
+    <string name="about_container">About</string>
+    <string name="about">About Event</string>
+    <string name="age_container">Age Restriction</string>
+    <string name="dress_code_container">Dress Code</string>
+    <string name="dress_code">Event Dress Code</string>
+    <string name="event_age">Event Age Restriction</string>
+    <string name="number">707</string>
+    <string name="seats_container">Seats</string>
+    <string name="event_date">Event Date</string>
+    <string name="event_time">Event Time</string>
+    <string name="paid_event">Paid Event</string>
+    <string name="event_price_container" />
+    <string name="event_paid_container">Price</string>
+    <string name="filters">Filters</string>
+    <string name="interested_in">Interested in</string>
+    <string name="event_category">Category</string>
+    <string name="distance">Distance</string>
+    <string name="number_km">707km</string>
+    <string name="max_price">Max Price</string>
+    <string name="number_max_price">Rp 707.000</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_profile">Profile</string>
+    <string name="username">Username</string>
+    <string name="user_location">User Location</string>
+</resources>

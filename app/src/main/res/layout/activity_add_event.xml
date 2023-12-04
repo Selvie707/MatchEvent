@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="32dp"
+    tools:context=".ui.AddEventActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/llTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:src="@drawable/ic_arrow_left"
+                android:background="@drawable/outlined_background_6dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_event"
+                android:textSize="26dp"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/btnBack"/>
+        </LinearLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivEventPicture"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pic_i"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llTop"
+            app:shapeAppearanceOverlay="@style/shape_radius_all"/>
+
+        <LinearLayout
+            android:id="@+id/llSeats"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="22dp"
+            android:background="@drawable/outlined_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivEventPicture"
+            app:layout_constraintTop_toBottomOf="@id/llTop">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_add"
+                android:background="@drawable/outlined_background_6dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="16dp"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_reduce"
+                android:background="@drawable/outlined_background_6dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/seats_container"
+            android:background="@color/white"
+            android:layout_marginStart="22dp"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintTop_toTopOf="@id/llSeats"
+            app:layout_constraintBottom_toTopOf="@id/llSeats"
+            app:layout_constraintStart_toStartOf="@id/llSeats"/>
+
+        <EditText
+            android:id="@+id/etEventName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_name"
+            android:paddingVertical="16dp"
+            android:layout_marginTop="32dp"
+            android:paddingHorizontal="28dp"
+            android:background="@drawable/outlined_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivEventPicture"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_name"
+            android:background="@color/white"
+            android:paddingHorizontal="16dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintTop_toTopOf="@id/etEventName"
+            app:layout_constraintBottom_toTopOf="@id/etEventName"
+            app:layout_constraintStart_toStartOf="@id/etEventName"/>
+
+        <EditText
+            android:id="@+id/etEventLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_name"
+            android:paddingVertical="16dp"
+            android:layout_marginTop="22dp"
+            android:paddingHorizontal="28dp"
+            android:background="@drawable/outlined_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEventName"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_location"
+            android:paddingHorizontal="16dp"
+            android:layout_marginStart="12dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="@id/etEventLocation"
+            app:layout_constraintBottom_toTopOf="@id/etEventLocation"
+            app:layout_constraintStart_toStartOf="@id/etEventLocation"/>
+
+        <EditText
+            android:id="@+id/etEventDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_date"
+            android:paddingVertical="16dp"
+            android:layout_marginTop="22dp"
+            android:paddingHorizontal="28dp"
+            android:drawableStart="@drawable/ic_calender"
+            android:drawablePadding="16dp"
+            android:background="@drawable/outlined_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEventLocation"/>
+
+        <EditText
+            android:id="@+id/etEventTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_time"
+            android:paddingVertical="16dp"
+            android:layout_marginTop="22dp"
+            android:paddingHorizontal="28dp"
+            android:background="@drawable/outlined_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEventDate"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_time"
+            android:background="@color/white"
+            android:paddingHorizontal="16dp"
+            android:layout_marginStart="12dp"
+            app:layout_constraintTop_toTopOf="@id/etEventTime"
+            app:layout_constraintBottom_toTopOf="@id/etEventTime"
+            app:layout_constraintStart_toStartOf="@id/etEventTime"/>
+
+        <EditText
+            android:id="@+id/etEventAbout"
+            android:layout_width="match_parent"
+            android:layout_height="122dp"
+            android:hint="@string/about"
+            android:paddingVertical="16dp"
+            android:layout_marginTop="22dp"
+            android:paddingHorizontal="28dp"
+            android:background="@drawable/outlined_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEventTime"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_container"
+            android:paddingHorizontal="16dp"
+            android:layout_marginStart="12dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="@id/etEventAbout"
+            app:layout_constraintBottom_toTopOf="@id/etEventAbout"
+            app:layout_constraintStart_toStartOf="@id/etEventAbout"/>
+
+        <EditText
+            android:id="@+id/etEventDressCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/dress_code"
+            android:paddingVertical="16dp"
+            android:layout_marginTop="22dp"
+            android:paddingHorizontal="28dp"
+            android:background="@drawable/outlined_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEventAbout"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dress_code_container"
+            android:paddingHorizontal="16dp"
+            android:layout_marginStart="12dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="@id/etEventDressCode"
+            app:layout_constraintBottom_toTopOf="@id/etEventDressCode"
+            app:layout_constraintStart_toStartOf="@id/etEventDressCode"/>
+
+        <EditText
+            android:id="@+id/etEventAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_age"
+            android:paddingVertical="16dp"
+            android:layout_marginTop="22dp"
+            android:paddingHorizontal="28dp"
+            android:background="@drawable/outlined_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEventDressCode"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/age_container"
+            android:paddingHorizontal="16dp"
+            android:layout_marginStart="12dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="@id/etEventAge"
+            app:layout_constraintBottom_toTopOf="@id/etEventAge"
+            app:layout_constraintStart_toStartOf="@id/etEventAge"/>
+
+        <RelativeLayout
+            android:id="@+id/rlPaidEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEventAge">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/paid_event"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                style="@style/Widget.Material3.CompoundButton.MaterialSwitch"/>
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/etEventPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ticket_price"
+            android:paddingVertical="16dp"
+            android:layout_marginTop="22dp"
+            android:paddingHorizontal="28dp"
+            android:background="@drawable/outlined_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rlPaidEvent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_paid_container"
+            android:paddingHorizontal="16dp"
+            android:layout_marginStart="12dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="@id/etEventPrice"
+            app:layout_constraintBottom_toTopOf="@id/etEventPrice"
+            app:layout_constraintStart_toStartOf="@id/etEventPrice"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_event"
+            android:textAllCaps="true"
+            android:padding="22dp"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etEventPrice"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

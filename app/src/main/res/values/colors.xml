@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark_blue">#2B6096</color>
+
+    <color name="screen">#FFFFFF</color>
+    <color name="action_bar">#2B2B2B</color>
+    <color name="fab">#FFFFFF</color>
+    <color name="icon_tint_ii">#FFFFFFFF</color>
+    <color name="background">#2B2B2B</color>
+    <color name="text_i">#FF000000</color>
+    <color name="text_ii">#FFFFFF</color>
+    <color name="button">#2B2B2B</color>
+    <color name="card">#002B2B2B</color>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="shape_circle">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="shape_radius_bottom_left">
+        <item name="cornerSizeBottomLeft">15%</item>
+        <item name="cornerSizeBottomRight">15%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="shape_radius_all">
+        <item name="cornerSize">16%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+</resources>
