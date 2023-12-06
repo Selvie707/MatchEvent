@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        
         <LinearLayout
             android:id="@+id/llTop"
             android:layout_width="match_parent"
@@ -43,8 +44,7 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/list_item_event"
             app:layout_constraintTop_toBottomOf="@id/llTop"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
