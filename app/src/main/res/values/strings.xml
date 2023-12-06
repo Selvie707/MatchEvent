@@ -33,4 +33,11 @@
     <string name="title_profile">Profile</string>
     <string name="username">Username</string>
     <string name="user_location">User Location</string>
+    <string name="hello">Hello, Via707!</string>
+    <string name="home_desc">What event would you like to go?</string>
+    <string name="popular_event">Popular Event</string>
+    <string name="recommended">Recommended For You</string>
+    <string name="find_event">Find Event</string>
+    <string name="more">More\n</string>
+    <string name="this_weekend">This Weekend</string>
 </resources>
