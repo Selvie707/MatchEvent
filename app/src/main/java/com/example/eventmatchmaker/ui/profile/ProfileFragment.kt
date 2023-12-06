@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.eventmatchmaker.R
 import com.example.eventmatchmaker.databinding.FragmentProfileBinding
@@ -23,16 +22,11 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+        val dashboardViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textDashboard
-//        dashboardViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
         binding.btnAddEvent.setOnClickListener(this)
         binding.btnEditProfile.setOnClickListener(this)
         binding.btnLogOut.setOnClickListener(this)
