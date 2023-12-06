@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvAppName"
+        android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivProfile"
@@ -31,10 +31,10 @@
         android:textColor="@color/dark_blue"/>
 
     <TextView
-        android:id="@+id/tvAppDescription"
+        android:id="@+id/tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvAppName"
+        android:layout_below="@id/tv1"
         android:layout_marginTop="-15dp"
         android:gravity="center"
         android:padding="15dp"
@@ -42,10 +42,10 @@
         android:textColor="#323755" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvAppDescription"
+        android:layout_below="@id/tv2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:width="300dp"
@@ -53,10 +53,9 @@
         android:text="LOGIN" />
 
     <Button
-        android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnLogin"
+        android:layout_below="@id/btn_login"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:width="300dp"
