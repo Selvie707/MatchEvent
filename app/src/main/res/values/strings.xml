@@ -40,4 +40,7 @@
     <string name="find_event">Find Event</string>
     <string name="more">More\n</string>
     <string name="this_weekend">This Weekend</string>
+    <string name="namevent">Name Event</string>
+    <string name="groupchat">Group Chat</string>
+    <string name="your_message">Your message</string>
 </resources>
