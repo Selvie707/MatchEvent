@@ -1,5 +1,6 @@
 package com.example.eventmatchmaker.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,9 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.eventmatchmaker.R
 import com.example.eventmatchmaker.databinding.FragmentProfileBinding
+import com.example.eventmatchmaker.ui.AddEventActivity
+import com.example.eventmatchmaker.ui.edit_profile.EditProfileActivity
+import com.example.eventmatchmaker.ui.onboarding.OnboardingActivity
 
 class ProfileFragment : Fragment(), View.OnClickListener {
 
@@ -30,6 +34,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 //            textView.text = it
 //        }
         binding.btnAddEvent.setOnClickListener(this)
+        binding.btnEditProfile.setOnClickListener(this)
+        binding.btnLogOut.setOnClickListener(this)
 
         return root
     }
@@ -40,14 +46,20 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-//        if (v?.id == R.id.btnAddEvent) {
-//            val categoryFragment = CategoryFragment()
-//            val fragmentManager = parentFragmentManager
-//            fragmentManager.beginTransaction().apply {
-//                replace(R.id.frame_container, categoryFragment, CategoryFragment::class.java.simpleName)
-//                addToBackStack(null)
-//                commit()
-//            }
-//        }
+        when (v?.id) {
+            R.id.btnAddEvent -> {
+                val intent = Intent(activity, AddEventActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.btnEditProfile -> {
+                val intent = Intent(activity, EditProfileActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.btnLogOut -> {
+                val intent = Intent(activity, OnboardingActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            }
+        }
     }
 }

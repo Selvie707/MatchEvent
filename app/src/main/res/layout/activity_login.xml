@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ivProfile">
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
@@ -54,7 +54,7 @@
             android:textColorHint="#464646" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
@@ -107,7 +107,7 @@
         <!--        </LinearLayout>-->
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnLoginLogin"
             style="@android:style/Widget.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
