@@ -131,11 +131,12 @@
         app:layout_constraintTop_toBottomOf="@id/rlMaxPrice"/>
 
     <Button
+        android:id="@+id/btnNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:layout_margin="32dp"
-        android:text="@string/event_location"
+        android:text="@string/next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
