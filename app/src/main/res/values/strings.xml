@@ -41,6 +41,8 @@
     <string name="find_event">Find Event</string>
     <string name="more">More\n</string>
     <string name="this_weekend">This Weekend</string>
+    <string name="not_account">Not have an account? Sign Up</string>
+    <string name="have_account">Already have an account? Login</string>
     <string name="namevent">Name Event</string>
     <string name="groupchat">Group Chat</string>
     <string name="your_message">Your message</string>
