@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.eventmatchmaker.R
 import com.example.eventmatchmaker.databinding.ActivitySignUpBinding
+import com.example.eventmatchmaker.ui.login.LoginActivity
 import com.example.eventmatchmaker.ui.preference.PreferenceActivity
 
 class SignUpActivity : AppCompatActivity() {
@@ -23,6 +24,10 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.btnSignUpSignUp.setOnClickListener {
             startActivity(Intent(this, PreferenceActivity::class.java))
+        }
+
+        binding.tvHaveAccount.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 }
