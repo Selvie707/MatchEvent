@@ -21,6 +21,7 @@
         android:id="@+id/svSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/outlined_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ivFilter"
@@ -28,17 +29,18 @@
 
     <ImageView
         android:id="@+id/ivFilter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
         android:background="@drawable/circle"
+        android:padding="8dp"
         android:src="@drawable/ic_menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvFindEvent"/>
+        app:layout_constraintTop_toBottomOf="@id/tvFindEvent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         tools:listitem="@layout/list_item_event"
         app:layout_constraintTop_toBottomOf="@id/svSearch"
         app:layout_constraintStart_toStartOf="parent"

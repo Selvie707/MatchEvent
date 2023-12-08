@@ -46,4 +46,8 @@
     <string name="namevent">Name Event</string>
     <string name="groupchat">Group Chat</string>
     <string name="your_message">Your message</string>
+    <string name="sikp">Skip</string>
+    <string name="your_preferences">Your Preferences</string>
+    <string name="preferences_desc">Select a few of your preferenced event category</string>
+    <string name="option">Option</string>
 </resources>

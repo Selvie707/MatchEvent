@@ -42,11 +42,10 @@
         android:id="@+id/rvThisWeekend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         tools:listitem="@layout/list_item_event"
         app:layout_constraintTop_toBottomOf="@id/llTop"
         app:layout_constraintStart_toStartOf="parent" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </ScrollView>
