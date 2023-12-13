@@ -1,66 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.onboarding.OnboardingActivity">
 
+
     <ImageView
         android:id="@+id/ivProfile"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="68dp"
         android:layout_marginEnd="38dp"
         android:src="@drawable/pic_i"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivProfile"
-        android:text="Lorem Ipsum"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+        android:text="Lorem Ipsum"
+        android:textColor="@color/dark_blue"
         android:textSize="32sp"
-        android:textColor="@color/dark_blue"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivProfile" />
 
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv1"
         android:layout_marginTop="-15dp"
         android:gravity="center"
-        android:padding="15dp"
+        android:padding="32dp"
         android:text="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil nulla aspernatur quia"
-        android:textColor="#323755" />
+        android:textColor="#323755"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:width="300dp"
         android:background="@drawable/button"
-        android:text="LOGIN" />
+        android:text="LOGIN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:width="300dp"
         android:background="@drawable/button"
-        android:text="SIGN UP" />
+        android:text="SIGN UP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

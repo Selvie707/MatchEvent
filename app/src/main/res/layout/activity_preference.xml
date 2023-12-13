@@ -4,10 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="32dp"
     tools:context=".ui.preference.PreferenceActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    
+        <LinearLayout
+            android:id="@+id/llTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:src="@drawable/ic_arrow_left"
+                android:background="@drawable/outlined_background_6dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sikp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="250dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvPreferences"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_preferences"
+            android:layout_marginTop="32dp"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            app:layout_constraintTop_toBottomOf="@id/llTop"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/preferences_desc"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/tvPreferences"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/list_item_preference"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"/>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_margin="32dp"
+        android:text="@string/next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/rvItem"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
