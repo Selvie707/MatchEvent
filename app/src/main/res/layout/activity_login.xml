@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.activity.login.LoginActivity">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -39,8 +39,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivProfile">
 
-        <EditText
-            android:id="@+id/etUsername"
+        <com.example.eventmatchmaker.ui.customview.CustomEditTextEmail
+            android:id="@+id/etLoginEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
@@ -49,12 +49,12 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/outlined_background"
-            android:hint="Username"
+            android:hint="@string/email"
             android:inputType="textPersonName"
             android:paddingStart="20dp"
             android:textColorHint="#464646" />
 
-        <EditText
+        <com.example.eventmatchmaker.ui.customview.CustomEditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/outlined_background"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPersonName"
             android:paddingStart="20dp"
             android:textColorHint="#464646" />
@@ -99,7 +99,7 @@
         <!--                app:srcCompat="@drawable/facebook" />-->
         <!--        </LinearLayout>-->
 
-        <Button
+        <com.example.eventmatchmaker.ui.customview.CustomInputButton
             android:id="@+id/btnLoginLogin"
             style="@android:style/Widget.Button"
             android:layout_width="match_parent"
@@ -123,5 +123,14 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llLogin" />
+
+    <ProgressBar
+        android:id="@+id/pb_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

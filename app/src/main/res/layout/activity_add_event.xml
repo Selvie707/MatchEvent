@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    tools:context=".ui.AddEventActivity">
+    tools:context=".ui.activity.addEvent.AddEventActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -85,6 +85,34 @@
                 android:src="@drawable/ic_reduce"
                 android:background="@drawable/outlined_background_6dp"/>
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_camera"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            app:tint="@color/light_blue_600"
+            android:src="@drawable/ic_camera"
+            android:contentDescription="@string/conDesStoryCameraButton"
+            app:layout_constraintStart_toStartOf="@id/llSeats"
+            app:layout_constraintTop_toBottomOf="@id/llSeats"/>
+
+        <ImageView
+            android:id="@+id/btn_gallery"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:src="@drawable/ic_photo"
+            android:layout_marginStart="8dp"
+            app:tint="@color/light_blue_600"
+            android:contentDescription="@string/conDesStoryGalleryButton"
+            app:layout_constraintTop_toBottomOf="@id/llSeats"
+            app:layout_constraintStart_toEndOf="@id/btn_camera"/>
+
+        <CheckBox
+            android:id="@+id/cb_add_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/llSeats"
+            app:layout_constraintStart_toEndOf="@id/btn_gallery"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -309,6 +337,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etEventPrice"/>
+
+        <ProgressBar
+            android:id="@+id/pb_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

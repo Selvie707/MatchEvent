@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    tools:context=".ui.preference.PreferenceActivity">
+    tools:context=".ui.activity.preference.PreferenceActivity">
 
         <LinearLayout
             android:id="@+id/llTop"
@@ -25,9 +25,10 @@
                 android:background="@drawable/outlined_background_6dp"/>
 
             <TextView
+                android:id="@+id/tvSkip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sikp"
+                android:text="@string/skip"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginStart="250dp" />
@@ -56,6 +57,7 @@
             android:id="@+id/rvItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             tools:listitem="@layout/list_item_preference"
             app:layout_constraintTop_toBottomOf="@id/tvDescription"/>
 
@@ -64,11 +66,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:layout_margin="32dp"
         android:text="@string/next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/rvItem"/>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

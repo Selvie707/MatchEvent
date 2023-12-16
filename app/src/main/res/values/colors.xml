@@ -4,6 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_blue">#2B6096</color>
 
+    <color name="light_blue_50">#95B2FD</color>
+    <color name="light_blue_200">#6796DC</color>
+    <color name="light_blue_600">#2D82CD</color>
+
     <color name="screen">#FFFFFF</color>
     <color name="action_bar">#2B2B2B</color>
     <color name="fab">#FFFFFF</color>
