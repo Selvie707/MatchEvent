@@ -1,28 +1,39 @@
 package com.example.eventmatchmaker.ui.activity.main
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eventmatchmaker.R
+import com.example.eventmatchmaker.data.response.DataItem
 import com.example.eventmatchmaker.databinding.ActivityMainBinding
+import com.example.eventmatchmaker.ui.activity.DetailActivity
 import com.example.eventmatchmaker.ui.activity.ViewModelFactory
-import com.example.eventmatchmaker.ui.activity.addEvent.AddEventActivity
 import com.example.eventmatchmaker.ui.activity.map.MapsActivity
 import com.example.eventmatchmaker.ui.activity.onboarding.OnboardingActivity
 import com.example.eventmatchmaker.ui.activity.profile.ProfileActivity
 import com.example.eventmatchmaker.ui.activity.search.SearchActivity
 import com.example.eventmatchmaker.ui.adapter.AdapterEvent
 import com.example.eventmatchmaker.ui.adapter.LoadingStateAdapter
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,24 +42,39 @@ class MainActivity : AppCompatActivity() {
     }
     private lateinit var token: String
     private lateinit var binding: ActivityMainBinding
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val navView: BottomNavigationView = binding.navView
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
-//        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-//        val appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.navigation_home, R.id.navigation_search, R.id.navigation_profile
-//            )
-//        )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-//        navView.setupWithNavController(navController)
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                navigateTo("WelcomeActivity")
+            } else {
+                user.token.let {
+                    token = it
+                    binding.fabAddStory.setOnClickListener {
+                        navigateTo("AddStoryActivity")
+                    }
+
+                    val userWelcome = resources.getString(R.string.userWelcome) + user.name + "!"
+                    binding.tvUsername.text = user.name
+                    binding.tvHello.text = userWelcome
+
+                    if (!::token.isInitialized) {
+                        token = it
+                    }
+                }
+            }
+        }
+
+        viewModel.isLoading.observe(this) {loading ->
+            showLoading(loading)
+        }
 
         binding.navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -69,7 +95,80 @@ class MainActivity : AppCompatActivity() {
         setupAction()
         viewModelObserve()
 
+        binding.tvUserLocation.setOnClickListener {
+            showToast("testing")
+            getLocation()
+        }
+
         setReviewData()
+    }
+
+    private fun getLocation() {
+        showToast("testing again")
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100)
+        }
+
+        //get lat and lon
+        val location = fusedLocationProviderClient.lastLocation
+        location.addOnSuccessListener {
+            if (it != null) {
+                val lat = it.latitude
+                val lon = it.longitude
+
+                val address = getAddressFromLocation(lat, lon)
+
+                showToast(address)
+
+                binding.tvUserLocation.text = address
+            }
+        }
+    }
+
+    private fun getAddressFromLocation(
+        latitude: Double,
+        longitude: Double
+    ): String {
+        val geocoder = Geocoder(this, java.util.Locale.getDefault())
+        var addressText = ""
+
+        try {
+            val addresses: List<Address>? = geocoder.getFromLocation(latitude, longitude, 1)
+
+            if (!addresses.isNullOrEmpty()) {
+                val address: Address = addresses[0]
+                val stringBuilder = StringBuilder()
+
+                // Construct the address string using available address lines
+                for (i in 0..address.maxAddressLineIndex) {
+                    stringBuilder.append(address.getAddressLine(i)).append("\n")
+                }
+
+                addressText = stringBuilder.toString()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return addressText
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == 100) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLocation()
+            } else {
+                showToast("Permission denied")
+            }
+        }
     }
 
     private fun setupUI() {
@@ -116,7 +215,7 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
             "AddStoryActivity" -> {
-                startActivity(Intent(this, AddEventActivity::class.java))
+                startActivity(Intent(this, DetailActivity::class.java))
             }
             else -> {
                 showToast(resources.getString(R.string.toastNavigateError))
@@ -138,8 +237,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-//        binding.nameTextView.text = viewModel.getSession().value?.name
-
         binding.settingButton.setOnClickListener {
             if (binding.logoutButton.isVisible) {
                 binding.logoutButton.visibility = View.GONE
@@ -171,11 +268,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setReviewData() {
         val adapter = AdapterEvent()
+
         binding.rvRecommendation.adapter = adapter.withLoadStateFooter(
             footer = LoadingStateAdapter {
                 adapter.retry()
             }
         )
+
         viewModel.story.observe(this) {
             adapter.submitData(lifecycle, it)
         }

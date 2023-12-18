@@ -7,7 +7,8 @@ import com.example.eventmatchmaker.data.retrofit.ApiService
 class UserAccountRepository(private val apiService: ApiService) {
 
     suspend fun register(name: String, email: String, password: String): RegisterResponse {
-        return apiService.register(name, email, password)
+        return apiService.
+        register(name, email, password)
     }
 
     suspend fun login(email: String, password: String): LoginResponse {

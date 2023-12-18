@@ -13,7 +13,7 @@ import com.example.eventmatchmaker.data.model.UserModel
 import com.example.eventmatchmaker.data.pref.Result
 import com.example.eventmatchmaker.data.pref.UserPreference
 import com.example.eventmatchmaker.data.response.FileUploadResponse
-import com.example.eventmatchmaker.data.response.ListStoryItem
+import com.example.eventmatchmaker.data.response.DataItem
 import com.example.eventmatchmaker.data.response.LoginResponse
 import com.example.eventmatchmaker.data.retrofit.ApiService
 import com.example.eventmatchmaker.data.retrofit.ApiServiceFactory
@@ -44,28 +44,30 @@ class UserRepository private constructor(
         return userPreference.getSession()
     }
 
-    fun getUserStories(): LiveData<PagingData<ListStoryItem>> {
+    fun getUserStories(name: String, category: String, ageLimit: String,
+                       priceStart: String, priceEnd: String, startTime: String
+    ): LiveData<PagingData<DataItem>> {
         return tokenLiveData.switchMap {
             Pager(
                 config = PagingConfig(
                     pageSize = 5
                 ),
                 pagingSourceFactory = {
-                    StoryPagingSource(it)
+                    StoryPagingSource(it, name, category, ageLimit, priceStart, priceEnd, startTime)
                 }
             ).liveData
         }
     }
 
-    suspend fun getStoriesLocation(): Result<List<ListStoryItem>> {
+    suspend fun getStoriesLocation(): Result<List<DataItem>> {
         return try {
             val apiService = ApiServiceFactory.getApiService(getSession().first().token)
-            val response = apiService.getStoriesLocation()
+            val response = apiService.getEventsLocation()
 
-            if (response.error == false) {
-                Result.Success(response.listStory)
+            if (response.data != null) {
+                Result.Success(response.data)
             } else {
-                Result.Failed("onFailure: ${response.message}")
+                Result.Failed("onFailure")
             }
         } catch (e: Exception) {
             Result.Failed("onFailure: ${e.message}")
@@ -86,7 +88,7 @@ class UserRepository private constructor(
         )
         try {
             val apiService = ApiServiceFactory.getApiService(getSession().first().token)
-            val successResponse = apiService.uploadImage(multipartBody, requestBody, latRequestBody, lonRequestBody)
+            val successResponse = apiService.addEvent(multipartBody, requestBody, latRequestBody, lonRequestBody)
             emit(Result.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()

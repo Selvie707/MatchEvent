@@ -21,21 +21,21 @@ class LoginViewModel(private val preferenceRepository: UserRepository) : ViewMod
         viewModelScope.launch {
             try {
                 val response = preferenceRepository.login(email, password)
-                if (response.error == false && response.loginResult != null) {
-                    val loginResult = response.loginResult
+                if (response.user != null) {
+                    val loginResult = response.user
 
                     val userModel = UserModel(
-                        userId = loginResult.userId ?: "",
-                        name = loginResult.name ?: "",
+                        userId = loginResult.id ?: "",
+                        name = loginResult.username ?: "",
                         email = email,
-                        token = loginResult.token ?: "",
+                        token = response.token ?: "",
                         isLogin = true
                     )
                     preferenceRepository.saveSession(userModel)
                     onSuccess.invoke()
                     isLoading.value = false
                 } else {
-                    onError.invoke("Login failed: ${response.message ?: "Unknown error"}")
+//                    onError.invoke("Login failed: ${response.message ?: "Unknown error"}")
                     isLoading.value = false
                 }
             } catch (e: Exception) {

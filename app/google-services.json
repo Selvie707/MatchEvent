@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "469733312666",
+    "project_id": "capstone-match-event",
+    "storage_bucket": "capstone-match-event.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469733312666:android:18aedda826085197d93723",
+        "android_client_info": {
+          "package_name": "com.example.eventmatchmaker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDt_ch-w_nCtGft6WZjImfOlHMz8H06660"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

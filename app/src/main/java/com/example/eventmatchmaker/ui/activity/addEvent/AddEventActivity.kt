@@ -4,33 +4,44 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.CompoundButton
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.core.util.Pair
 import com.example.eventmatchmaker.R
 import com.example.eventmatchmaker.data.pref.Result
 import com.example.eventmatchmaker.databinding.ActivityAddEventBinding
 import com.example.eventmatchmaker.ui.activity.CameraActivity
 import com.example.eventmatchmaker.ui.activity.CameraActivity.Companion.CAMERAX_RESULT
 import com.example.eventmatchmaker.ui.activity.ViewModelFactory
-import com.example.eventmatchmaker.ui.activity.main.MainActivity
+import com.example.eventmatchmaker.ui.activity.profile.ProfileActivity
 import com.example.eventmatchmaker.ui.reduceFileImage
 import com.example.eventmatchmaker.ui.uriToFile
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.datepicker.MaterialDatePicker
+import nl.joery.timerangepicker.TimeRangePicker
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
+
 
 class AddEventActivity : AppCompatActivity() {
 
+    private lateinit var btnShowDateRangePicker: EditText
     private var currentImageUri: Uri? = null
     private lateinit var binding: ActivityAddEventBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -56,6 +67,10 @@ class AddEventActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.pbProgressBar.visibility = View.GONE
+        binding.etEventLocation.visibility = View.GONE
+        binding.tvEventLocation.visibility = View.GONE
+        binding.etEventPrice.visibility = View.GONE
+        binding.tvEventPrice.visibility = View.GONE
 
         if (!allPermissionsGranted(Manifest.permission.CAMERA)) {
             requestPermissionLauncher.launch(Manifest.permission.CAMERA)
@@ -66,13 +81,38 @@ class AddEventActivity : AppCompatActivity() {
         binding.btnAddEvent.setOnClickListener {
             uploadImage()
         }
-        binding.btnGallery.setOnClickListener {
-            startGallery()
+
+        if (binding.clChooseImage.visibility == View.VISIBLE) {
+            binding.fabCloseChooseImage.setOnClickListener {
+                binding.clChooseImage.visibility = View.GONE
+            }
         }
-        binding.btnCamera.setOnClickListener {
-            startCameraX()
+
+        binding.ivEventPicture.setOnClickListener {
+
+            binding.clChooseImage.visibility = View.VISIBLE
+
+            binding.btnGallery.setOnClickListener {
+                startGallery()
+                binding.clChooseImage.visibility = View.GONE
+            }
+
+            binding.btnCamera.setOnClickListener {
+                startCameraX()
+                binding.clChooseImage.visibility = View.GONE
+            }
         }
+
         binding.cbAddLocation.setOnClickListener {
+
+            if (binding.cbAddLocation.isChecked) {
+                binding.tvEventLocation.visibility = View.VISIBLE
+                binding.etEventLocation.visibility = View.VISIBLE
+            } else {
+                binding.tvEventLocation.visibility = View.GONE
+                binding.etEventLocation.visibility = View.GONE
+            }
+
             if (!allPermissionsGranted(Manifest.permission.ACCESS_FINE_LOCATION) && !allPermissionsGranted(
                     Manifest.permission.ACCESS_COARSE_LOCATION)
             ) {
@@ -81,9 +121,73 @@ class AddEventActivity : AppCompatActivity() {
             }
         }
 
+        binding.etEventDate.setOnClickListener {
+            val picker = MaterialDatePicker.Builder.dateRangePicker()
+                .setTheme(R.style.ThemeMaterialCalendar)
+                .setTitleText("Select Date Range")
+                .setSelection(Pair(null, null))
+                .build()
+
+            picker.show(this.supportFragmentManager, "TAG")
+
+            picker.addOnPositiveButtonClickListener {
+                binding.etEventDate.hint = convertTimeToDate(it.first) + "/" + convertTimeToDate(it.second)
+            }
+
+            picker.addOnNegativeButtonClickListener {
+                picker.dismiss()
+            }
+        }
+
+        binding.etEventTime.setOnClickListener {
+            binding.clChooseTime.visibility = View.VISIBLE
+        }
+
+        binding.trpTimeRange.setOnTimeChangeListener(object : TimeRangePicker.OnTimeChangeListener {
+            override fun onStartTimeChange(startTime: TimeRangePicker.Time) {
+                Log.d("TimeRangePicker", "Start time: $startTime")
+                binding.tvStartTime.text = startTime.toString()
+            }
+
+            override fun onEndTimeChange(endTime: TimeRangePicker.Time) {
+                Log.d("TimeRangePicker", "End time: " + endTime.hour)
+                binding.tvEndTime.text = endTime.toString()
+            }
+
+            override fun onDurationChange(duration: TimeRangePicker.TimeDuration) {
+                Log.d("TimeRangePicker", "Duration: " + duration.hour)
+            }
+        })
+
+        binding.fabCloseTime.setOnClickListener {
+            binding.clChooseTime.visibility = View.GONE
+        }
+
+        binding.fabOkeTime.setOnClickListener {
+            binding.etEventTime.hint = binding.tvStartTime.text.toString() + " - " + binding.tvEndTime.text.toString()
+            binding.clChooseTime.visibility = View.GONE
+        }
+
+        binding.smPrice.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { _, _ ->
+            if (binding.smPrice.isChecked) {
+                binding.tvEventPrice.visibility = View.VISIBLE
+                binding.etEventPrice.visibility = View.VISIBLE
+            } else {
+                binding.tvEventPrice.visibility = View.GONE
+                binding.etEventPrice.visibility = View.GONE
+            }
+        })
+
         binding.btnBack.setOnClickListener {
             finish()
         }
+    }
+
+    private fun convertTimeToDate(time: Long): String {
+        val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+        utc.timeInMillis = time
+        val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return format.format(utc.time)
     }
 
     private fun allPermissionsGranted(permission: String) =
@@ -166,7 +270,7 @@ class AddEventActivity : AppCompatActivity() {
                     }
                     is Result.Success -> {
                         showLoading(false)
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, ProfileActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                         showRegistrationSuccessDialog(intent)
                     }

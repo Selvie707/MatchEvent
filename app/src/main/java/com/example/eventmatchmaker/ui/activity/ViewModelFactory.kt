@@ -9,6 +9,7 @@ import com.example.eventmatchmaker.ui.activity.addEvent.AddEventViewModel
 import com.example.eventmatchmaker.ui.activity.main.MainViewModel
 import com.example.eventmatchmaker.ui.activity.login.LoginViewModel
 import com.example.eventmatchmaker.ui.activity.map.MapsViewModel
+import com.example.eventmatchmaker.ui.activity.search.SearchViewModel
 
 class ViewModelFactory(private val userRepository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -17,6 +18,9 @@ class ViewModelFactory(private val userRepository: UserRepository) : ViewModelPr
         return when {
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(userRepository) as T
+            }
+            modelClass.isAssignableFrom(SearchViewModel::class.java) -> {
+                SearchViewModel(userRepository) as T
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(userRepository) as T

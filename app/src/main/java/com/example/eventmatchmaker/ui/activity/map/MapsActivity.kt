@@ -88,7 +88,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         showCurrentLocationToast()
 
         getMyLocation()
-        addManyMarker()
+//        addManyMarker()
     }
 
     private fun showToast(message: String) {
@@ -110,37 +110,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    private fun addManyMarker() {
-
-        viewModel.getStoriesLocation()
-
-        viewModel.storyList.observe(this) { story ->
-            Log.d("Wanna see story", story.toString())
-            story.forEach {data ->
-                if (data.lat != null && data.lon != null) {
-                    Log.d("Wanna see storyForEach", data.toString())
-                    val latLng = LatLng(data.lat, data.lon)
-                    mMap.addMarker(
-                        MarkerOptions()
-                            .position(latLng)
-                            .title(data.name)
-                            .snippet(data.description)
-                    )
-                    boundsBuilder.include(latLng)
-
-                    val bounds: LatLngBounds = boundsBuilder.build()
-                    mMap.animateCamera(
-                        CameraUpdateFactory.newLatLngBounds(
-                            bounds,
-                            resources.displayMetrics.widthPixels,
-                            resources.displayMetrics.heightPixels,
-                            300
-                        )
-                    )
-                }
-            }
-        }
-    }
+//    private fun addManyMarker() {
+//
+//        viewModel.getStoriesLocation()
+//
+//        viewModel.storyList.observe(this) { story ->
+//            Log.d("Wanna see story", story.toString())
+//            story.forEach {data ->
+//                if (data.lat != null && data.lon != null) {
+//                    Log.d("Wanna see storyForEach", data.toString())
+//                    val latLng = LatLng(data.lat, data.lon)
+//                    mMap.addMarker(
+//                        MarkerOptions()
+//                            .position(latLng)
+//                            .title(data.name)
+//                            .snippet(data.description)
+//                    )
+//                    boundsBuilder.include(latLng)
+//
+//                    val bounds: LatLngBounds = boundsBuilder.build()
+//                    mMap.animateCamera(
+//                        CameraUpdateFactory.newLatLngBounds(
+//                            bounds,
+//                            resources.displayMetrics.widthPixels,
+//                            resources.displayMetrics.heightPixels,
+//                            300
+//                        )
+//                    )
+//                }
+//            }
+//        }
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.map_option, menu)

@@ -2,6 +2,7 @@
     <string name="app_name">EventMatchmaker</string>
     <string name="event_name">Event Name</string>
     <string name="event_location">Event Location</string>
+    <string name="age_limit">Age Limit</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="add_event">Add Event</string>
     <string name="log_out">Log Out</string>
@@ -27,7 +28,7 @@
     <string name="distance">Distance</string>
     <string name="number_km">707km</string>
     <string name="max_price">Max Price</string>
-    <string name="number_max_price">Rp 707.000</string>
+    <string name="number_price">Rp 707.000</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
@@ -144,4 +145,12 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="isEventOffline">Offline Event</string>
+    <string name="chooseImage">Choose Image</string>
+    <string name="chooseTime">Choose Time</string>
+    <string name="rangeTime">00:00</string>
+    <string name="strip">-</string>
+    <string name="event_start_date">Event Start Date</string>
+    <string name="min_price">Min Price</string>
+    <string name="searchContainer">I am looking for...</string>
 </resources>
