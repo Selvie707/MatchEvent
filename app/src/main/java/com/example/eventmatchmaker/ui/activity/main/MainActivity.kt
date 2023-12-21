@@ -19,9 +19,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.eventmatchmaker.R
 import com.example.eventmatchmaker.databinding.ActivityMainBinding
 import com.example.eventmatchmaker.ui.activity.ViewModelFactory
+import com.example.eventmatchmaker.ui.activity.detail.DetailActivity
 import com.example.eventmatchmaker.ui.activity.map.MapsActivity
 import com.example.eventmatchmaker.ui.activity.onboarding.OnboardingActivity
 import com.example.eventmatchmaker.ui.activity.profile.ProfileActivity
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // TODO show popular event slider
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -94,8 +98,12 @@ class MainActivity : AppCompatActivity() {
         setupAction()
         viewModelObserve()
 
+        // TODO show user image profile
+//        Glide.with(this)
+//            .load(DetailActivity.picture)
+//            .into(binding.ivProfile)
+
         binding.tvUserLocation.setOnClickListener {
-            showToast("testing")
             getLocation()
         }
 
@@ -103,8 +111,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getLocation() {
-        showToast("testing again")
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -272,25 +278,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setReviewData() {
-        val adapter = AdapterEvent()
+        val adapterRecommendEvents = AdapterEvent()
+        val adapterThisWeekend = AdapterEvent()
 
-        binding.rvRecommendation.adapter = adapter.withLoadStateFooter(
+        binding.rvRecommendation.adapter = adapterRecommendEvents.withLoadStateFooter(
             footer = LoadingStateAdapter {
-                adapter.retry()
+                adapterRecommendEvents.retry()
             }
         )
 
-        viewModel.story.observe(this) {
-            adapter.submitData(lifecycle, it)
+        viewModel.recommendEvents.observe(this) {
+            adapterRecommendEvents.submitData(lifecycle, it)
         }
 
-        binding.rvThisWeekend.adapter = adapter.withLoadStateFooter(
+        binding.rvThisWeekend.adapter = adapterThisWeekend.withLoadStateFooter(
             footer = LoadingStateAdapter {
-                adapter.retry()
+                adapterThisWeekend.retry()
             }
         )
         viewModel.story.observe(this) {
-            adapter.submitData(lifecycle, it)
+            adapterThisWeekend.submitData(lifecycle, it)
         }
     }
 

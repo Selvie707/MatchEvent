@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
+    android:background="@color/white"
     tools:context=".ui.activity.filter.FiltersActivity">
 
     <TextView
@@ -130,6 +131,10 @@
         android:valueFrom="0"
         android:stepSize="1000"
         android:valueTo="1000000"
+        app:tickColor="#00CAD9FF"
+        app:thumbColor="@color/dark_blue"
+        app:trackColorActive="@color/dark_blue"
+        app:trackColorInactive="@color/light_blue_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rlDistance"/>
@@ -173,6 +178,10 @@
         android:valueFrom="0"
         android:stepSize="1000"
         android:valueTo="1000000"
+        app:tickColor="#00CAD9FF"
+        app:thumbColor="@color/dark_blue"
+        app:trackColorActive="@color/dark_blue"
+        app:trackColorInactive="@color/light_blue_20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rlMaxPrice"/>
@@ -182,8 +191,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:layout_margin="32dp"
         android:text="@string/next"
+        android:backgroundTint="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

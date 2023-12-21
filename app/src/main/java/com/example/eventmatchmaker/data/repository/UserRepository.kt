@@ -9,6 +9,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
+import com.example.eventmatchmaker.data.EventPagingSource
 import com.example.eventmatchmaker.data.StoryPagingSource
 import com.example.eventmatchmaker.data.model.UserModel
 import com.example.eventmatchmaker.data.pref.Result
@@ -55,6 +56,19 @@ class UserRepository private constructor(
                 ),
                 pagingSourceFactory = {
                     StoryPagingSource(it, name, category, ageLimit, priceStart, priceEnd, startTime, startTimeCap)
+                }
+            ).liveData
+        }
+    }
+
+    fun getRecommendEvents(): LiveData<PagingData<DataItem>> {
+        return tokenLiveData.switchMap {
+            Pager(
+                config = PagingConfig(
+                    pageSize = 5
+                ),
+                pagingSourceFactory = {
+                    EventPagingSource(it)
                 }
             ).liveData
         }

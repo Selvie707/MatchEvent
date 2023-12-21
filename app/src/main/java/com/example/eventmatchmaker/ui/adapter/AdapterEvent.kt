@@ -48,11 +48,11 @@ class AdapterEvent :
                                 putExtra(DetailActivity.DESCRIPTION, user.description)
                                 putExtra(DetailActivity.PICTURE, user.imageUrl)
                                 putExtra(DetailActivity.LOCATION, user.location)
-                                putExtra(DetailActivity.START_TIME, user.imageUrl)
-                                putExtra(DetailActivity.END_TIME, user.imageUrl)
-                                putExtra(DetailActivity.TICKET_PRICE, user.imageUrl)
-                                putExtra(DetailActivity.DRESS_CODE, user.imageUrl)
-                                putExtra(DetailActivity.AGE_RESTRICTION, user.imageUrl)
+                                putExtra(DetailActivity.START_TIME, user.startTime)
+                                putExtra(DetailActivity.END_TIME, user.endTime)
+                                putExtra(DetailActivity.TICKET_PRICE, user.price)
+                                putExtra(DetailActivity.DRESS_CODE, user.dressCode)
+                                putExtra(DetailActivity.AGE_RESTRICTION, user.ageLimit)
                             }
                         }
                         itemView.context.startActivity(intent)

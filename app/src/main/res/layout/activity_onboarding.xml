@@ -4,71 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="32dp"
     tools:context=".ui.activity.onboarding.OnboardingActivity">
 
 
     <ImageView
         android:id="@+id/ivProfile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="38dp"
-        android:src="@drawable/pic_i"
+        android:src="@drawable/app_logo"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvTitle"/>
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivProfile"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="Match Event"
-        android:textColor="@color/dark_blue"
         android:textSize="32sp"
+        android:textStyle="bold"
+        android:text="PEER2PAIR"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivProfile" />
+        app:layout_constraintBottom_toTopOf="@id/tvDescription"/>
 
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-15dp"
-        android:gravity="center"
-        android:padding="32dp"
+        android:layout_marginBottom="62dp"
         android:text="A place to connect with others"
-        android:textColor="#323755"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintBottom_toTopOf="@id/btn_login"/>
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:width="300dp"
-        android:background="@drawable/button"
         android:text="LOGIN"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+        app:layout_constraintBottom_toTopOf="@id/btnSignUp"/>
 
     <Button
         android:id="@+id/btnSignUp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:width="300dp"
-        android:background="@drawable/button"
         android:text="SIGN UP"
+        android:padding="16dp"
+        android:layout_marginBottom="62dp"
+        android:backgroundTint="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_login" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

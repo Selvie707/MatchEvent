@@ -26,7 +26,7 @@ class DetailActivity : AppCompatActivity() {
         const val END_TIME = "end_time"
         const val TICKET_PRICE = "ticket_price"
         const val DRESS_CODE = "dress_code"
-        const val AGE_RESTRICTION = "picture"
+        const val AGE_RESTRICTION = "age_restriction"
 
         var idUser: String = ""
         var username: String = ""
@@ -83,22 +83,23 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        idUser = intent.getStringExtra(USER_ID) ?: ""
-        username = intent.getStringExtra(EVENT_NAME) ?: ""
-        description = intent.getStringExtra(DESCRIPTION) ?: ""
-        picture = intent.getStringExtra(PICTURE) ?: ""
-        location = intent.getStringExtra(LOCATION) ?: ""
+        idUser = intent.getStringExtra(USER_ID) ?: "none"
+        username = intent.getStringExtra(EVENT_NAME) ?: "none"
+        description = intent.getStringExtra(DESCRIPTION) ?: "none"
+        picture = intent.getStringExtra(PICTURE) ?: "none"
+        location = intent.getStringExtra(LOCATION) ?: "none"
         start_time = intent.getStringExtra(START_TIME) ?: "TZ"
         end_time = intent.getStringExtra(END_TIME) ?: "TZ"
-        ticket_price = intent.getStringExtra(TICKET_PRICE) ?: ""
-        dress_code = intent.getStringExtra(DRESS_CODE) ?: ""
-        age_restriction = intent.getStringExtra(AGE_RESTRICTION) ?: ""
+        ticket_price = intent.getStringExtra(TICKET_PRICE) ?: "none"
+        dress_code = intent.getStringExtra(DRESS_CODE) ?: "none"
+        age_restriction = intent.getStringExtra(AGE_RESTRICTION) ?: "none"
 
         val (startDate, startTime) = separateDateTime(start_time)
         val (endDate, endTime) = separateDateTime(end_time)
 
         binding.tvEventName.text = username
         binding.tvEventAbout.text = description
+//        binding.tvDate.text = "Tanggal guys"
         binding.tvDate.text = "$startDate - $endDate, $startTime - $endTime"
         binding.tvTicketPrice.text = ticket_price
         binding.tvEventDressCode.text = dress_code

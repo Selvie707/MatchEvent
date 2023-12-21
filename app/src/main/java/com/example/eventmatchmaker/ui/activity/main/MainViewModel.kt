@@ -93,6 +93,9 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
     val story: LiveData<PagingData<DataItem>> =
         repository.getUserStories("a", "", "", "", "", "", "").cachedIn(viewModelScope)
 
+    val recommendEvents: LiveData<PagingData<DataItem>> =
+        repository.getRecommendEvents().cachedIn(viewModelScope)
+
     fun updateLocation(context: Context, fusedLocationProviderClient: FusedLocationProviderClient) {
         if (ActivityCompat.checkSelfPermission(
                 context,

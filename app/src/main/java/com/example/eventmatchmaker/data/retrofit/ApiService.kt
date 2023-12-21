@@ -36,7 +36,7 @@ interface ApiService {
         @Field("password") password: String
     ): LoginResponse
 
-    @GET("events")
+    @GET("events/reco")
     suspend fun getEvents(): EventResponse
 
     @GET("events")

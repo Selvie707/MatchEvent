@@ -15,7 +15,7 @@
     <string name="dress_code_container">Dress Code</string>
     <string name="dress_code">Event Dress Code</string>
     <string name="event_age">Event Age Restriction</string>
-    <string name="number">707</string>
+    <string name="number">0</string>
     <string name="seats_container">Seats</string>
     <string name="event_date">Event Date</string>
     <string name="event_time">Event Time</string>
@@ -26,7 +26,7 @@
     <string name="interested_in">Interested in</string>
     <string name="event_category">Category</string>
     <string name="distance">Distance</string>
-    <string name="number_km">707km</string>
+    <string name="number_km">0km</string>
     <string name="max_price">Max Price</string>
     <string name="number_price">0</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -34,7 +34,7 @@
     <string name="title_search">Search</string>
     <string name="title_profile">Profile</string>
     <string name="username">Username</string>
-    <string name="user_location">User Location</string>
+    <string name="user_location">Jalan Sudirman No. 123, Jakarta</string>
     <string name="hello">Hello, Via707!</string>
     <string name="home_desc">What event would you like to go?</string>
     <string name="popular_event">Popular Event</string>
