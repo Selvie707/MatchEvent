@@ -10,12 +10,14 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.eventmatchmaker.data.EventPagingSource
+import com.example.eventmatchmaker.data.PreferencesPagingSource
 import com.example.eventmatchmaker.data.StoryPagingSource
 import com.example.eventmatchmaker.data.model.UserModel
 import com.example.eventmatchmaker.data.pref.Result
 import com.example.eventmatchmaker.data.pref.UserPreference
 import com.example.eventmatchmaker.data.response.FileUploadResponse
 import com.example.eventmatchmaker.data.response.DataItem
+import com.example.eventmatchmaker.data.response.DataItemCategories
 import com.example.eventmatchmaker.data.response.LoginResponse
 import com.example.eventmatchmaker.data.retrofit.ApiService
 import com.example.eventmatchmaker.data.retrofit.ApiServiceFactory
@@ -86,6 +88,19 @@ class UserRepository private constructor(
             }
         } catch (e: Exception) {
             Result.Failed("onFailure: ${e.message}")
+        }
+    }
+
+    fun getCategories(): LiveData<PagingData<DataItemCategories>> {
+        return tokenLiveData.switchMap {
+            Pager(
+                config = PagingConfig(
+                    pageSize = 5
+                ),
+                pagingSourceFactory = {
+                    PreferencesPagingSource(it)
+                }
+            ).liveData
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.eventmatchmaker.data.retrofit
 
+import com.example.eventmatchmaker.data.response.CategoryResponse
 import com.example.eventmatchmaker.data.response.FileUploadResponse
 import com.example.eventmatchmaker.data.response.GetUserResponse
 import com.example.eventmatchmaker.data.response.LoginResponse
@@ -44,6 +45,9 @@ interface ApiService {
 
     @GET("events")
     suspend fun getEventSearch(@QueryMap queryMap: Map<String, String>): EventResponse
+
+    @GET("categories")
+    suspend fun getCategories(): CategoryResponse
 
     @Multipart
     @POST("events")

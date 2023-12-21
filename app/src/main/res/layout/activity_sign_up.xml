@@ -23,7 +23,7 @@
         android:layout_width="102dp"
         android:layout_height="102dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/pic_i"
+        app:srcCompat="@drawable/ic_add_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"

@@ -21,6 +21,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 class FiltersActivity : AppCompatActivity() {
+    // TODO fix filter
 
     private lateinit var binding: ActivityFiltersBinding
 
@@ -37,12 +38,11 @@ class FiltersActivity : AppCompatActivity() {
                 id: Long
             ) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-                // Use the selectedItem as needed
                 Log.d("Selected Item", selectedItem)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Handle case when nothing is selected (if needed)
+                
             }
         }
 

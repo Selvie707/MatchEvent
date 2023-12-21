@@ -44,6 +44,7 @@ class SearchActivity : AppCompatActivity() {
         priceStart = intent.getStringExtra("MIN_PRICE_DATA") ?: ""
         priceEnd = intent.getStringExtra("MAX_PRICE_DATA") ?: ""
 
+        // TODO delete this
         Log.d("Testinggg", category + ageLimit + startTime + startTimeCap +
                 priceStart + priceEnd)
 

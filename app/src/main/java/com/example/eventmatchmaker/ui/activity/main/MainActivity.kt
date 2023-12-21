@@ -121,8 +121,6 @@ class MainActivity : AppCompatActivity() {
         val location = fusedLocationProviderClient.lastLocation
         location.addOnSuccessListener {
             if (it != null) {
-                showToast("testing again")
-
                 val lat = it.latitude
                 val lon = it.longitude
 

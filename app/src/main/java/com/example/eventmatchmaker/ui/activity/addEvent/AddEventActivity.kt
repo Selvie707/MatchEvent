@@ -40,6 +40,7 @@ import java.util.TimeZone
 
 
 class AddEventActivity : AppCompatActivity() {
+    // TODO fix add event
 
     private lateinit var btnShowDateRangePicker: EditText
     private var currentImageUri: Uri? = null

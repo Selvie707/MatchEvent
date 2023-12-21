@@ -15,10 +15,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.eventmatchmaker.data.model.UserModel
-import com.example.eventmatchmaker.data.pref.Result
 import com.example.eventmatchmaker.data.repository.UserRepository
 import com.example.eventmatchmaker.data.response.DataItem
-import com.example.eventmatchmaker.data.retrofit.ApiServiceFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.launch
 import java.util.Locale

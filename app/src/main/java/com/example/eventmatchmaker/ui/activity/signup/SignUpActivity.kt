@@ -1,7 +1,5 @@
 package com.example.eventmatchmaker.ui.activity.signup
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +18,8 @@ import com.example.eventmatchmaker.ui.activity.login.LoginActivity
 import com.example.eventmatchmaker.ui.activity.preference.PreferenceActivity
 
 class SignUpActivity : AppCompatActivity() {
+    // TODO fix repeat password feature
+    // TODO [clean code]
 
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var viewModel: SignupViewModel
@@ -45,13 +45,10 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
+        // TODO open intent to take user's photo
         binding.ivCamera.setOnClickListener {
             Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show()
         }
-
-//        binding.btnSignUpSignUp.setOnClickListener {
-//            startActivity(Intent(this, PreferenceActivity::class.java))
-//        }
 
         binding.tvHaveAccount.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -63,6 +60,7 @@ class SignUpActivity : AppCompatActivity() {
             val name = binding.etLoginUsername.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
+            val repeatPassword = binding.etRePassword.text.toString()
 
 //            viewModel.register(name, email, password,
 //                {
@@ -73,11 +71,16 @@ class SignUpActivity : AppCompatActivity() {
 //                }
 //            )
 
-            val intent = Intent(this, PreferenceActivity::class.java)
-            intent.putExtra("NAME_KEY", name)
-            intent.putExtra("EMAIL_KEY", email)
-            intent.putExtra("PASSWORD_KEY", password)
-            startActivity(intent)
+            if (password == repeatPassword) {
+                val intent = Intent(this, PreferenceActivity::class.java)
+                intent.putExtra("NAME_KEY", name)
+                intent.putExtra("EMAIL_KEY", email)
+                intent.putExtra("PASSWORD_KEY", password)
+                startActivity(intent)
+            } else {
+                binding.etPassword.error = "Password Mismatch"
+                binding.etRePassword.error = "Password Mismatch"
+            }
         }
     }
 

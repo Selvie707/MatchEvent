@@ -9,6 +9,7 @@ import com.example.eventmatchmaker.ui.activity.addEvent.AddEventViewModel
 import com.example.eventmatchmaker.ui.activity.main.MainViewModel
 import com.example.eventmatchmaker.ui.activity.login.LoginViewModel
 import com.example.eventmatchmaker.ui.activity.map.MapsViewModel
+import com.example.eventmatchmaker.ui.activity.preference.PreferenceViewModel
 import com.example.eventmatchmaker.ui.activity.profile.ProfileViewModel
 import com.example.eventmatchmaker.ui.activity.search.SearchViewModel
 
@@ -34,6 +35,9 @@ class ViewModelFactory(private val userRepository: UserRepository) : ViewModelPr
             }
             modelClass.isAssignableFrom(AddEventViewModel::class.java) -> {
                 AddEventViewModel(userRepository) as T
+            }
+            modelClass.isAssignableFrom(PreferenceViewModel::class.java) -> {
+                PreferenceViewModel(userRepository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

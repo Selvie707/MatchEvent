@@ -88,6 +88,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         showCurrentLocationToast()
 
         getMyLocation()
+
+        // TODO fix markers
 //        addManyMarker()
     }
 
