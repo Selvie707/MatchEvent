@@ -8,7 +8,8 @@ import com.example.eventmatchmaker.data.retrofit.ApiServiceFactory
 class StoryPagingSource(private val token: String,
                         private val name: String, private val category: String,
                         private val ageLimit: String, private val priceStart: String,
-                        private val priceEnd: String, private val startTime: String
+                        private val priceEnd: String, private val startTime: String,
+                        private val startTimeCap: String
 ) : PagingSource<Int, DataItem>() {
 
 
@@ -30,7 +31,7 @@ class StoryPagingSource(private val token: String,
             val response = apiService.getEventSearch(mapOf("name" to name,
                 "categories" to category, "age_limit" to ageLimit,
                 "price_start" to priceStart, "price_end" to priceEnd,
-                "start_time" to startTime))
+                "start_time" to startTime, "start_time_cap" to startTimeCap))
             val responseData = response.data
             LoadResult.Page(
                 data = responseData,

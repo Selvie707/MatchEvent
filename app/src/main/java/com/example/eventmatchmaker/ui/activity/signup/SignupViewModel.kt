@@ -16,13 +16,14 @@ class SignupViewModel(private val repository: UserAccountRepository) : ViewModel
         name: String,
         email: String,
         password: String,
+        preferenceCategories: String,
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     ) {
         isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repository.register(name, email, password)
+                val response = repository.register(name, email, password, preferenceCategories)
 
                 if (response.message.equals("User created successfully")) {
                     onSuccess.invoke()

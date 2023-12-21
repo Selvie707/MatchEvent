@@ -34,11 +34,12 @@ class SearchViewModel(private val repository: UserRepository) : ViewModel() {
         ageLimit: String,
         priceStart: String,
         priceEnd: String,
-        startTime: String
+        startTime: String,
+        startTimeCap: String
     ): LiveData<PagingData<DataItem>> {
-        return repository.getUserStories(name, category, ageLimit, priceStart, priceEnd, startTime)
+        return repository.getUserStories(name, category, ageLimit, priceStart, priceEnd, startTime, startTimeCap)
     }
 
     val story: LiveData<PagingData<DataItem>> =
-        repository.getUserStories("", "", "", "", "", "").cachedIn(viewModelScope)
+        repository.getUserStories("", "", "", "", "", "", "").cachedIn(viewModelScope)
 }

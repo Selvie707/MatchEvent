@@ -1,10 +1,12 @@
-package com.example.eventmatchmaker.ui.activity
+package com.example.eventmatchmaker.ui.activity.detail
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.add
+import android.view.View
+import androidx.core.util.Pair
+import androidx.core.util.component1
+import androidx.core.util.component2
 import com.bumptech.glide.Glide
 import com.example.eventmatchmaker.R
 import com.example.eventmatchmaker.databinding.ActivityDetailBinding
@@ -16,14 +18,26 @@ class DetailActivity : AppCompatActivity() {
 
     companion object {
         const val USER_ID = "id"
-        const val USERNAME = "username"
+        const val EVENT_NAME = "event name"
         const val DESCRIPTION = "description"
         const val PICTURE = "picture"
+        const val LOCATION = "location"
+        const val START_TIME = "start_time"
+        const val END_TIME = "end_time"
+        const val TICKET_PRICE = "ticket_price"
+        const val DRESS_CODE = "dress_code"
+        const val AGE_RESTRICTION = "picture"
 
         var idUser: String = ""
         var username: String = ""
         var description: String? = null
         var picture: String? = null
+        var location: String? = null
+        var start_time: String = ""
+        var end_time: String = ""
+        var ticket_price: String? = null
+        var dress_code: String? = null
+        var age_restriction: String? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,12 +54,14 @@ class DetailActivity : AppCompatActivity() {
 
         // Hide the GroupChatFragment if it's found initially
         if (groupChatFragment != null) {
+            binding.viewCloseFragment.visibility = View.GONE
             fragmentManager.beginTransaction().hide(groupChatFragment).commit()
         }
 
-        binding.ivEvent.setOnClickListener {
+        binding.viewCloseFragment.setOnClickListener {
             val fragment = supportFragmentManager.findFragmentByTag(GroupChatFragment::class.java.simpleName)
             if (fragment != null && !fragment.isHidden) {
+                binding.viewCloseFragment.visibility = View.GONE
                 supportFragmentManager.beginTransaction().hide(fragment).commit()
             }
         }
@@ -55,10 +71,12 @@ class DetailActivity : AppCompatActivity() {
             val groupChatFragment = fragmentManager.findFragmentByTag(GroupChatFragment::class.java.simpleName)
 
             if (groupChatFragment != null && groupChatFragment.isHidden) {
+                binding.viewCloseFragment.visibility = View.VISIBLE
                 fragmentManager.beginTransaction().show(groupChatFragment).commit()
             } else {
                 // Add the GroupChatFragment if it's not already added
                 val homeFragment = GroupChatFragment()
+                binding.viewCloseFragment.visibility = View.VISIBLE
                 fragmentManager.beginTransaction()
                     .add(R.id.flGroupChat, homeFragment, GroupChatFragment::class.java.simpleName)
                     .commit()
@@ -66,15 +84,36 @@ class DetailActivity : AppCompatActivity() {
         }
 
         idUser = intent.getStringExtra(USER_ID) ?: ""
-        username = intent.getStringExtra(USERNAME) ?: ""
+        username = intent.getStringExtra(EVENT_NAME) ?: ""
         description = intent.getStringExtra(DESCRIPTION) ?: ""
         picture = intent.getStringExtra(PICTURE) ?: ""
+        location = intent.getStringExtra(LOCATION) ?: ""
+        start_time = intent.getStringExtra(START_TIME) ?: "TZ"
+        end_time = intent.getStringExtra(END_TIME) ?: "TZ"
+        ticket_price = intent.getStringExtra(TICKET_PRICE) ?: ""
+        dress_code = intent.getStringExtra(DRESS_CODE) ?: ""
+        age_restriction = intent.getStringExtra(AGE_RESTRICTION) ?: ""
+
+        val (startDate, startTime) = separateDateTime(start_time)
+        val (endDate, endTime) = separateDateTime(end_time)
 
         binding.tvEventName.text = username
         binding.tvEventAbout.text = description
+        binding.tvDate.text = "$startDate - $endDate, $startTime - $endTime"
+        binding.tvTicketPrice.text = ticket_price
+        binding.tvEventDressCode.text = dress_code
+        binding.tvEventAge.text = age_restriction
 
         Glide.with(this)
             .load(picture)
             .into(binding.ivEvent)
+    }
+
+    private fun separateDateTime(dateTimeString: String): Pair<String, String> {
+        val dateTimeParts = dateTimeString.split("T", "Z") // Splitting the string by 'T' and 'Z' to get date and time
+        val date = dateTimeParts[0] // Date part
+        val time = dateTimeParts[1].substring(0, 5) // Time part (considering the format is 'HH:mm:ss.SSS')
+
+        return Pair(date, time)
     }
 }

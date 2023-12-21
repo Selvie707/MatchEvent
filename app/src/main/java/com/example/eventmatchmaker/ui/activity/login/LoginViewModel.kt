@@ -29,13 +29,13 @@ class LoginViewModel(private val preferenceRepository: UserRepository) : ViewMod
                         name = loginResult.username ?: "",
                         email = email,
                         token = response.token ?: "",
+                        location = "",
                         isLogin = true
                     )
                     preferenceRepository.saveSession(userModel)
                     onSuccess.invoke()
                     isLoading.value = false
                 } else {
-//                    onError.invoke("Login failed: ${response.message ?: "Unknown error"}")
                     isLoading.value = false
                 }
             } catch (e: Exception) {

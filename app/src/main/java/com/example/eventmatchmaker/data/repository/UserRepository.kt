@@ -1,5 +1,6 @@
 package com.example.eventmatchmaker.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
@@ -45,7 +46,7 @@ class UserRepository private constructor(
     }
 
     fun getUserStories(name: String, category: String, ageLimit: String,
-                       priceStart: String, priceEnd: String, startTime: String
+                       priceStart: String, priceEnd: String, startTime: String, startTimeCap: String
     ): LiveData<PagingData<DataItem>> {
         return tokenLiveData.switchMap {
             Pager(
@@ -53,7 +54,7 @@ class UserRepository private constructor(
                     pageSize = 5
                 ),
                 pagingSourceFactory = {
-                    StoryPagingSource(it, name, category, ageLimit, priceStart, priceEnd, startTime)
+                    StoryPagingSource(it, name, category, ageLimit, priceStart, priceEnd, startTime, startTimeCap)
                 }
             ).liveData
         }
@@ -74,11 +75,33 @@ class UserRepository private constructor(
         }
     }
 
-    fun upload(image: File, description: String, lat: Double?, lon: Double?) = liveData {
+    fun upload(image: File) = liveData {
         emit(Result.Loading)
-        val requestBody = description.toRequestBody("text/plain".toMediaType())
-        val latRequestBody = lat?.toString()?.toRequestBody()
-        val lonRequestBody = lon?.toString()?.toRequestBody()
+//        val ageLimitRequestBody = ageLimit?.toString()?.toRequestBody("text/plain".toMediaType())
+//        val capacityRequestBody = capacity.toString().toRequestBody("text/plain".toMediaType())
+//        val categoriesRequestBody = categories?.toRequestBody("text/plain".toMediaType())
+//        val descriptionRequestBody = description.toRequestBody("text/plain".toMediaType())
+//        val dressCodeRequestBody = dressCode?.toRequestBody("text/plain".toMediaType())
+//        val endTimeRequestBody = endTime.toRequestBody("text/plain".toMediaType())
+//        val latRequestBody = lat?.toString()?.toRequestBody()
+//        val lonRequestBody = long?.toString()?.toRequestBody()
+//        val nameRequestBody = name.toRequestBody("text/plain".toMediaType())
+//        val organizerRequestBody = organizer?.toRequestBody("text/plain".toMediaType())
+//        val priceRequestBody = price?.toString()?.toRequestBody("text/plain".toMediaType())
+//        val startTimeRequestBody = startTime.toRequestBody("text/plain".toMediaType())
+
+        val ageLimitRequestBody = 16?.toString()?.toRequestBody()
+        val capacityRequestBody = 62.toString().toRequestBody()
+        val categoriesRequestBody = "adventure".toRequestBody("text/plain".toMediaType())
+        val descriptionRequestBody = "Event Description".toRequestBody("text/plain".toMediaType())
+        val dressCodeRequestBody = "Event Dress Code".toRequestBody("text/plain".toMediaType())
+        val endTimeRequestBody = "2023-12-08T20:00:00.000Z".toRequestBody("text/plain".toMediaType())
+        val latRequestBody = 3.7628571.toString().toRequestBody()
+        val lonRequestBody = 98.6695859.toString().toRequestBody()
+        val nameRequestBody = "Event Name".toRequestBody("text/plain".toMediaType())
+        val organizerRequestBody = "Event Organizer".toRequestBody("text/plain".toMediaType())
+        val priceRequestBody = 120000.toString().toRequestBody()
+        val startTimeRequestBody = "2023-12-01T20:00:00.000Z".toRequestBody("text/plain".toMediaType())
 
         val requestImageFile = image.asRequestBody("image/jpeg".toMediaType())
         val multipartBody = MultipartBody.Part.createFormData(
@@ -88,12 +111,16 @@ class UserRepository private constructor(
         )
         try {
             val apiService = ApiServiceFactory.getApiService(getSession().first().token)
-            val successResponse = apiService.addEvent(multipartBody, requestBody, latRequestBody, lonRequestBody)
+            val successResponse = apiService.addEvent(multipartBody, ageLimitRequestBody,
+                capacityRequestBody, categoriesRequestBody, descriptionRequestBody,
+                dressCodeRequestBody, endTimeRequestBody,
+                nameRequestBody, organizerRequestBody, priceRequestBody, startTimeRequestBody, latRequestBody, lonRequestBody)
             emit(Result.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, FileUploadResponse::class.java)
             emit(Result.Failed(errorResponse.message))
+            Log.d("Errornya apaa", errorResponse.message)
         } catch (e: Exception) {
             emit(Result.Failed(e.message.toString()))
         }

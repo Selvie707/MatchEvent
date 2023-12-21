@@ -3,13 +3,15 @@ package com.example.eventmatchmaker.ui.activity.search
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.eventmatchmaker.R
 import com.example.eventmatchmaker.databinding.ActivitySearchBinding
-import com.example.eventmatchmaker.ui.activity.FiltersActivity
 import com.example.eventmatchmaker.ui.activity.ViewModelFactory
+import com.example.eventmatchmaker.ui.activity.filter.FiltersActivity
 import com.example.eventmatchmaker.ui.activity.main.MainActivity
 import com.example.eventmatchmaker.ui.activity.profile.ProfileActivity
 import com.example.eventmatchmaker.ui.adapter.AdapterEvent
@@ -22,17 +24,28 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivitySearchBinding
-    private var name = ""
+    private var name = "a"
     private var category = ""
     private var ageLimit = ""
     private var priceStart = ""
     private var priceEnd = ""
     private var startTime = ""
+    private var startTimeCap = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        category = intent.getStringExtra("SELECTED_ITEM") ?: ""
+        ageLimit = intent.getStringExtra("AGE_LIMIT_DATA") ?: ""
+        startTime = intent.getStringExtra("START_TIME_DATA") ?: ""
+        startTimeCap = intent.getStringExtra("START_TIME_CAP_DATA") ?: ""
+        priceStart = intent.getStringExtra("MIN_PRICE_DATA") ?: ""
+        priceEnd = intent.getStringExtra("MAX_PRICE_DATA") ?: ""
+
+        Log.d("Testinggg", category + ageLimit + startTime + startTimeCap +
+                priceStart + priceEnd)
 
         val layoutManagerRecommendation = GridLayoutManager(this, 2)
 
@@ -53,7 +66,8 @@ class SearchActivity : AppCompatActivity() {
             ageLimit,
             priceStart,
             priceEnd,
-            startTime
+            startTime,
+            startTimeCap
         ).observe(this@SearchActivity) { pagingData ->
             adapter.submitData(lifecycle, pagingData)
         }
@@ -72,6 +86,7 @@ class SearchActivity : AppCompatActivity() {
                     svSearch.hide()
                     viewModel.getUserStories(
                         svSearch.text.toString(),
+                        "",
                         "",
                         "",
                         "",

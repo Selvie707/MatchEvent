@@ -235,34 +235,71 @@ class AddEventActivity : AppCompatActivity() {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, this).reduceFileImage()
             Log.d("Image File", "showImage: ${imageFile.path}")
-            val description = binding.etEventAbout.text.toString()
+//            val ageLimit = 18
+//            val capacity = 707
+//            val categories = "adventure"
+//            val description = "abc description"
+//            val dressCode = "abc dress code"
+//            val endTime = "2023-12-01T20:00:00.000Z"
+//            val name = "abc name"
+//            val organizer = "abc organizer"
+//            val price = 120000
+//            val startTime = "2023-11-01T20:00:00.000Z"
 
             if (ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
-                uploadStory(imageFile, description)
+//                uploadStory(imageFile, ageLimit, capacity, categories, description, dressCode, endTime,
+//                    name, organizer, price, startTime)
+
+                uploadStory(imageFile)
             } else {
                 fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
                     val isChecked = binding.cbAddLocation.isChecked
                     val lat = if (isChecked) location.latitude else null
                     val lon = if (isChecked) location.longitude else null
 
-                    uploadStory(imageFile, description, lat, lon)
+//                    uploadStory(imageFile, ageLimit, capacity, categories, description, dressCode, endTime,
+//                        name, organizer, price, startTime, lat, lon)
+
+                    uploadStory(imageFile)
                 }
             }
             showLoading(true)
         } ?: showToast(getString(R.string.empty_image_warning))
     }
 
-    private fun uploadStory(
-        imageFile: File,
-        description: String,
-        lat: Double? = null,
-        lon: Double? = null
-    ) {
-        viewModel.uploadStory(imageFile, description, lat, lon).observe(this) { result ->
+//    private fun uploadStory(
+//        imageFile: File, ageLimit: Int? = null, capacity: Int, categories: String? = null,
+//        description: String, dressCode: String? = null, endTime: String, name: String, organizer: String? = null, price: Int? = null,
+//        startTime: String, lat: Double? = null, lon: Double? = null
+//    ) {
+//        viewModel.uploadStory(imageFile, ageLimit, capacity, categories, description, dressCode,
+//            endTime, name, organizer, price, startTime, lat, lon).observe(this) { result ->
+//            if (result != null) {
+//                when (result) {
+//                    is Result.Loading -> {
+//                        showLoading(true)
+//                    }
+//                    is Result.Success -> {
+//                        showLoading(false)
+//                        val intent = Intent(this, ProfileActivity::class.java)
+//                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                        showRegistrationSuccessDialog(intent)
+//                    }
+//                    is Result.Failed -> {
+//                        showLoading(false)
+//                        showToast(resources.getString(R.string.toast_upload_failed))
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+    private fun uploadStory(imageFile: File) {
+        viewModel.uploadStory(imageFile).observe(this) { result ->
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {

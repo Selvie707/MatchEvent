@@ -7,7 +7,6 @@
     android:padding="32dp"
     tools:context=".ui.activity.GroupChatActivity">
 
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivPicture"
         android:layout_width="120dp"
@@ -47,10 +46,11 @@
         app:layout_constraintTop_toBottomOf="@id/tvNameEvent"/>
 
     <RelativeLayout
-        android:id="@+id/llkeyboard"
+        android:id="@+id/rlKeyboard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/outlined_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,9 +78,67 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:padding="8dp"
-        android:src="@drawable/ic_voice"
         app:tint="@color/white"
+        android:src="@drawable/ic_voice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvOtherChatUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:text="@string/username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/llOtherChat"/>
+
+    <LinearLayout
+        android:id="@+id/llOtherChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/radius_other_chat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvMyChatUsername">
+
+        <TextView
+            android:id="@+id/tvOtherChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/other_chat"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMyChatUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:text="@string/username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/llMyChat"/>
+
+    <LinearLayout
+        android:id="@+id/llMyChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/radius_my_chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rlKeyboard">
+
+        <TextView
+            android:id="@+id/tvMyChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/my_chat"
+            android:textColor="@color/white"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

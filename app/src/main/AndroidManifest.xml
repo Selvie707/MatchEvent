@@ -65,13 +65,13 @@
             android:name=".ui.activity.GroupChatActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.FiltersActivity"
+            android:name=".ui.activity.filter.FiltersActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.addEvent.AddEventActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.DetailActivity"
+            android:name=".ui.activity.detail.DetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.onboarding.OnboardingActivity"

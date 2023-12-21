@@ -28,7 +28,7 @@
     <string name="distance">Distance</string>
     <string name="number_km">707km</string>
     <string name="max_price">Max Price</string>
-    <string name="number_price">Rp 707.000</string>
+    <string name="number_price">0</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
@@ -40,7 +40,7 @@
     <string name="popular_event">Popular Event</string>
     <string name="recommended">Recommended For You</string>
     <string name="find_event">Find Event</string>
-    <string name="more">More\n</string>
+    <string name="more">More</string>
     <string name="this_weekend">This Weekend</string>
     <string name="not_account">Not have an account? Sign Up</string>
     <string name="have_account">Already have an account? Login</string>
@@ -153,4 +153,15 @@
     <string name="event_start_date">Event Start Date</string>
     <string name="min_price">Min Price</string>
     <string name="searchContainer">I am looking for...</string>
+    <string name="event_organizer">Event Organizer</string>
+    <string name="event_organizer_container">Organizer</string>
+    <string name="currency">Rp</string>
+    <string name="my_chat">I am on my way! I am going with Emily so I’ll drop at her place first. See you guys later!</string>
+    <string name="other_chat">Where are you guys?</string>
+
+    <string-array name="category_array">
+        <item>Adventure</item>
+        <item>Sport</item>
+        <item>Option 3</item>
+    </string-array>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    tools:context=".ui.activity.FiltersActivity">
+    tools:context=".ui.activity.filter.FiltersActivity">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -38,6 +38,7 @@
         android:layout_marginTop="32dp"
         android:paddingHorizontal="28dp"
         android:hint="@string/event_category"
+        android:entries="@array/category_array"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvInterestedIn" />
 
@@ -79,12 +80,13 @@
         android:id="@+id/etStartDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="false"
         android:hint="@string/event_start_date"
-        android:drawableStart="@drawable/ic_calender"
         android:drawablePadding="16dp"
         android:paddingVertical="16dp"
         android:layout_marginTop="32dp"
         android:paddingHorizontal="28dp"
+        android:drawableStart="@drawable/ic_calender"
         android:background="@drawable/outlined_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etAgeLimit"/>
@@ -106,6 +108,14 @@
             android:layout_alignParentStart="true"/>
 
         <TextView
+            android:id="@+id/tvMinCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:text="@string/currency"
+            android:layout_toStartOf="@id/tvMinPrice"/>
+
+        <TextView
             android:id="@+id/tvMinPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,9 +124,12 @@
     </RelativeLayout>
 
     <com.google.android.material.slider.Slider
-        android:id="@+id/slDistance"
+        android:id="@+id/slMinPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:valueFrom="0"
+        android:stepSize="1000"
+        android:valueTo="1000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rlDistance"/>
@@ -128,7 +141,7 @@
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slDistance">
+        app:layout_constraintTop_toBottomOf="@id/slMinPrice">
 
         <TextView
             android:layout_width="wrap_content"
@@ -136,6 +149,14 @@
             android:textStyle="bold"
             android:text="@string/max_price"
             android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/tvMaxCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:text="@string/currency"
+            android:layout_toStartOf="@id/tvMaxPrice"/>
 
         <TextView
             android:id="@+id/tvMaxPrice"
@@ -149,6 +170,9 @@
         android:id="@+id/slMaxPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:valueFrom="0"
+        android:stepSize="1000"
+        android:valueTo="1000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rlMaxPrice"/>
@@ -163,8 +187,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,6 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
-import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface ApiService {
@@ -26,7 +25,8 @@ interface ApiService {
     suspend fun register(
         @Field("email") email: String,
         @Field("password") password: String,
-        @Field("username") name: String
+        @Field("username") name: String,
+        @Field("preference_categories") preferenceCategories: String
     ): RegisterResponse
 
     @FormUrlEncoded
@@ -46,11 +46,20 @@ interface ApiService {
     suspend fun getEventSearch(@QueryMap queryMap: Map<String, String>): EventResponse
 
     @Multipart
-    @POST("event")
+    @POST("events")
     suspend fun addEvent(
         @Part file: MultipartBody.Part,
+        @Part("age_limit") age_limit: RequestBody?,
+        @Part("capacity") capacity: RequestBody,
+        @Part("category") categories: RequestBody?,
         @Part("description") description: RequestBody,
+        @Part("dress_code") dress_code: RequestBody?,
+        @Part("end_time") end_time: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part("organizer") organizer: RequestBody?,
+        @Part("price") price: RequestBody?,
+        @Part("start_time") start_time: RequestBody,
         @Part("lat") lat: RequestBody?,
-        @Part("lon") lon: RequestBody?,
+        @Part("lon") lon: RequestBody?
     ): FileUploadResponse
 }

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eventmatchmaker.data.response.DataItem
 import com.example.eventmatchmaker.databinding.ListItemEventBinding
-import com.example.eventmatchmaker.ui.activity.DetailActivity
+import com.example.eventmatchmaker.ui.activity.detail.DetailActivity
 
 class AdapterEvent :
     PagingDataAdapter<DataItem, AdapterEvent.MyViewHolder>(DIFF_CALLBACK) {
@@ -44,9 +44,15 @@ class AdapterEvent :
                         val intent = Intent(itemView.context, DetailActivity::class.java).apply {
                             if (user != null) {
                                 putExtra(DetailActivity.USER_ID, user.id)
-                                putExtra(DetailActivity.USERNAME, user.name)
+                                putExtra(DetailActivity.EVENT_NAME, user.name)
                                 putExtra(DetailActivity.DESCRIPTION, user.description)
                                 putExtra(DetailActivity.PICTURE, user.imageUrl)
+                                putExtra(DetailActivity.LOCATION, user.location)
+                                putExtra(DetailActivity.START_TIME, user.imageUrl)
+                                putExtra(DetailActivity.END_TIME, user.imageUrl)
+                                putExtra(DetailActivity.TICKET_PRICE, user.imageUrl)
+                                putExtra(DetailActivity.DRESS_CODE, user.imageUrl)
+                                putExtra(DetailActivity.AGE_RESTRICTION, user.imageUrl)
                             }
                         }
                         itemView.context.startActivity(intent)

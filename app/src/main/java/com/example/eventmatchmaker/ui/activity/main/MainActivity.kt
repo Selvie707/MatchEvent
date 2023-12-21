@@ -14,17 +14,13 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eventmatchmaker.R
-import com.example.eventmatchmaker.data.response.DataItem
 import com.example.eventmatchmaker.databinding.ActivityMainBinding
-import com.example.eventmatchmaker.ui.activity.DetailActivity
 import com.example.eventmatchmaker.ui.activity.ViewModelFactory
 import com.example.eventmatchmaker.ui.activity.map.MapsActivity
 import com.example.eventmatchmaker.ui.activity.onboarding.OnboardingActivity
@@ -57,8 +53,9 @@ class MainActivity : AppCompatActivity() {
             } else {
                 user.token.let {
                     token = it
-                    binding.fabAddStory.setOnClickListener {
-                        navigateTo("AddStoryActivity")
+
+                    binding.clHeader.setOnClickListener {
+                        navigateTo("ProfileActivity")
                     }
 
                     val userWelcome = resources.getString(R.string.userWelcome) + user.name + "!"
@@ -80,10 +77,12 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_search -> {
                     startActivity(Intent(this, SearchActivity::class.java))
+//                    binding.navView.selectedItemId = R.id.navigation_search
                     true
                 }
                 R.id.navigation_profile -> {
                     startActivity(Intent(this, ProfileActivity::class.java))
+//                    binding.navView.selectedItemId = R.id.navigation_profile
                     true
                 }
                 else -> false
@@ -105,6 +104,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getLocation() {
         showToast("testing again")
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -115,6 +115,8 @@ class MainActivity : AppCompatActivity() {
         val location = fusedLocationProviderClient.lastLocation
         location.addOnSuccessListener {
             if (it != null) {
+                showToast("testing again")
+
                 val lat = it.latitude
                 val lon = it.longitude
 
@@ -123,7 +125,16 @@ class MainActivity : AppCompatActivity() {
                 showToast(address)
 
                 binding.tvUserLocation.text = address
+
+                viewModel.getSession().observe(this) { user ->
+                    viewModel.saveSession(user.userId, user.name, user.email, user.token, address)
+                    Log.d("Testing Save Session", user.userId + user.name + user.email + user.token + address)
+                }
             }
+        }
+
+        location.addOnFailureListener {
+            Log.d("testing get location", "failed to get the device's location")
         }
     }
 
@@ -190,12 +201,6 @@ class MainActivity : AppCompatActivity() {
             } else {
                 user.token.let {
                     token = it
-                    binding.fabAddStory.setOnClickListener {
-                        navigateTo("AddStoryActivity")
-                    }
-
-                    val userWelcome = resources.getString(R.string.userWelcome) + user.name + "!"
-//                    binding.nameTextView.text = userWelcome
 
                     if (!::token.isInitialized) {
                         token = it
@@ -214,8 +219,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, OnboardingActivity::class.java))
                 finish()
             }
-            "AddStoryActivity" -> {
-                startActivity(Intent(this, DetailActivity::class.java))
+            "ProfileActivity" -> {
+                startActivity(Intent(this, ProfileActivity::class.java))
             }
             else -> {
                 showToast(resources.getString(R.string.toastNavigateError))

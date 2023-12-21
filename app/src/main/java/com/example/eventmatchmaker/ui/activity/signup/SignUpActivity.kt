@@ -64,14 +64,20 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 
-            viewModel.register(name, email, password,
-                {
-                    showRegistrationSuccessDialog()
-                },
-                { errorMessage ->
-                    showRegistrationErrorDialog(errorMessage)
-                }
-            )
+//            viewModel.register(name, email, password,
+//                {
+//                    showRegistrationSuccessDialog()
+//                },
+//                { errorMessage ->
+//                    showRegistrationErrorDialog(errorMessage)
+//                }
+//            )
+
+            val intent = Intent(this, PreferenceActivity::class.java)
+            intent.putExtra("NAME_KEY", name)
+            intent.putExtra("EMAIL_KEY", email)
+            intent.putExtra("PASSWORD_KEY", password)
+            startActivity(intent)
         }
     }
 

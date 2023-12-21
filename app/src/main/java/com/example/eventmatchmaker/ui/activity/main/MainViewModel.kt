@@ -46,6 +46,25 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
         return repository.getSession().asLiveData()
     }
 
+    fun saveSession(userId: String, name: String, email: String,
+                    token: String, location: String) {
+        viewModelScope.launch {
+            try {
+                val userModel = UserModel(
+                    userId = userId,
+                    name = name,
+                    email = email,
+                    token = token,
+                    location = location,
+                    isLogin = true
+                )
+                repository.saveSession(userModel)
+            } catch (e: Exception) {
+                Log.e(TAG, "Update data failed: ${e.message ?: "Unknown error"}")
+            }
+        }
+    }
+
     fun logout() {
         viewModelScope.launch {
             repository.logout()
@@ -72,7 +91,7 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
 //    }
 
     val story: LiveData<PagingData<DataItem>> =
-        repository.getUserStories("", "", "", "", "", "").cachedIn(viewModelScope)
+        repository.getUserStories("a", "", "", "", "", "", "").cachedIn(viewModelScope)
 
     fun updateLocation(context: Context, fusedLocationProviderClient: FusedLocationProviderClient) {
         if (ActivityCompat.checkSelfPermission(

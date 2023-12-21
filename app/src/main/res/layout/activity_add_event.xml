@@ -79,6 +79,7 @@
                     android:background="@drawable/outlined_background_6dp"/>
 
                 <TextView
+                    android:id="@+id/tvCapacity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/number"
@@ -207,6 +208,30 @@
                 app:layout_constraintBottom_toTopOf="@id/etEventTime"
                 app:layout_constraintStart_toStartOf="@id/etEventTime"/>
 
+            <Spinner
+                android:id="@+id/spEventCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/event_category"
+                android:focusable="false"
+                android:paddingVertical="16dp"
+                android:layout_marginTop="22dp"
+                android:paddingHorizontal="28dp"
+                android:background="@drawable/outlined_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etEventTime"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/event_category"
+                android:background="@color/white"
+                android:paddingHorizontal="16dp"
+                android:layout_marginStart="12dp"
+                app:layout_constraintTop_toTopOf="@id/spEventCategory"
+                app:layout_constraintBottom_toTopOf="@id/spEventCategory"
+                app:layout_constraintStart_toStartOf="@id/spEventCategory"/>
+
             <EditText
                 android:id="@+id/etEventAbout"
                 android:layout_width="match_parent"
@@ -217,7 +242,7 @@
                 android:paddingHorizontal="28dp"
                 android:background="@drawable/outlined_background"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etEventTime"/>
+                app:layout_constraintTop_toBottomOf="@id/spEventCategory"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -276,6 +301,29 @@
                 app:layout_constraintBottom_toTopOf="@id/etEventAge"
                 app:layout_constraintStart_toStartOf="@id/etEventAge"/>
 
+            <EditText
+                android:id="@+id/etEventOrganizer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/event_organizer"
+                android:paddingVertical="16dp"
+                android:layout_marginTop="22dp"
+                android:paddingHorizontal="28dp"
+                android:background="@drawable/outlined_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etEventAge"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/event_organizer_container"
+                android:paddingHorizontal="16dp"
+                android:layout_marginStart="12dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="@id/etEventOrganizer"
+                app:layout_constraintBottom_toTopOf="@id/etEventOrganizer"
+                app:layout_constraintStart_toStartOf="@id/etEventOrganizer"/>
+
             <RelativeLayout
                 android:id="@+id/rlPaidEvent"
                 android:layout_width="match_parent"
@@ -283,7 +331,7 @@
                 android:layout_marginTop="22dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etEventAge">
+                app:layout_constraintTop_toBottomOf="@id/etEventOrganizer">
 
                 <TextView
                     android:layout_width="wrap_content"
