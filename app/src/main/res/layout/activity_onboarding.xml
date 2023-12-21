@@ -13,24 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="38dp"
-        android:src="@drawable/pic_i"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivProfile"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="Match Event"
-        android:textColor="@color/dark_blue"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivProfile" />
 
     <TextView
         android:id="@+id/tvDescription"
@@ -43,7 +30,7 @@
         android:textColor="#323755"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@id/ivProfile" />
 
     <Button
         android:id="@+id/btn_login"
