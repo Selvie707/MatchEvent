@@ -2,6 +2,7 @@ package com.example.eventmatchmaker.ui.activity.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eventmatchmaker.R
@@ -42,12 +43,10 @@ class ProfileActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_home -> {
                     startActivity(Intent(this, MainActivity::class.java))
-//                    binding.navView.selectedItemId = R.id.navigation_home
                     true
                 }
                 R.id.navigation_search -> {
                     startActivity(Intent(this, SearchActivity::class.java))
-//                    binding.navView.selectedItemId = R.id.navigation_search
                     true
                 }
                 else -> false
@@ -55,7 +54,9 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.btnAddEvent.setOnClickListener {
-            startActivity(Intent(this, AddEventActivity::class.java))
+            // TODO fix add event features
+//            startActivity(Intent(this, AddEventActivity::class.java))
+            Toast.makeText(this, "Coming Soon", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnLogOut.setOnClickListener {

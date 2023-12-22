@@ -62,15 +62,6 @@ class SignUpActivity : AppCompatActivity() {
             val password = binding.etPassword.text.toString()
             val repeatPassword = binding.etRePassword.text.toString()
 
-//            viewModel.register(name, email, password,
-//                {
-//                    showRegistrationSuccessDialog()
-//                },
-//                { errorMessage ->
-//                    showRegistrationErrorDialog(errorMessage)
-//                }
-//            )
-
             if (password == repeatPassword) {
                 val intent = Intent(this, PreferenceActivity::class.java)
                 intent.putExtra("NAME_KEY", name)
@@ -115,25 +106,6 @@ class SignUpActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
     }
-
-//    private fun playAnimation() {
-//        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
-//            duration = 6000
-//            repeatCount = ObjectAnimator.INFINITE
-//            repeatMode = ObjectAnimator.REVERSE
-//        }.start()
-//
-//        val signup = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(500)
-//        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(500)
-//        val etName = ObjectAnimator.ofFloat(binding.nameEditText, View.ALPHA, 1f).setDuration(500)
-//        val etEmail = ObjectAnimator.ofFloat(binding.emailEditText, View.ALPHA, 1f).setDuration(500)
-//        val etPassword = ObjectAnimator.ofFloat(binding.passwordEditText, View.ALPHA, 1f).setDuration(500)
-//
-//        AnimatorSet().apply {
-//            playSequentially(title, etName, etEmail, etPassword, signup)
-//            start()
-//        }
-//    }
 
     private fun showRegistrationSuccessDialog() {
         if (!isFinishing && !isDestroyed) {

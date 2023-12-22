@@ -38,14 +38,19 @@ class AdapterPreferences: PagingDataAdapter<DataItemCategories, AdapterPreferenc
         RecyclerView.ViewHolder(binding.root) {
             init {
                 binding.root.setOnClickListener {
-
-                    // TODO when the item is clicked again, the color will be back to original
                     // TODO Pass the Id and the name of the item that clicked
 
-                    val resolvedColor = ContextCompat.getColor(itemView.context, R.color.white)
+                    val resolvedWhiteColor = ContextCompat.getColor(itemView.context, R.color.white)
+                    val resolvedBlackColor = ContextCompat.getColor(itemView.context, R.color.black)
                     val resolvedBackground = ContextCompat.getColor(itemView.context, R.color.dark_blue)
-                    binding.tvPreferenceCategory.setBackgroundColor(resolvedBackground)
-                    binding.tvPreferenceCategory.setTextColor(resolvedColor)
+
+                    if (binding.tvPreferenceCategory.currentTextColor == resolvedWhiteColor) {
+                        binding.tvPreferenceCategory.setBackgroundColor(resolvedWhiteColor)
+                        binding.tvPreferenceCategory.setTextColor(resolvedBlackColor)
+                    } else {
+                        binding.tvPreferenceCategory.setBackgroundColor(resolvedBackground)
+                        binding.tvPreferenceCategory.setTextColor(resolvedWhiteColor)
+                    }
 
                     // TODO clean this class' code
 //                    val position = adapterPosition

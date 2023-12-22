@@ -3,14 +3,17 @@ package com.example.eventmatchmaker.ui.activity.preference
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eventmatchmaker.R
 import com.example.eventmatchmaker.databinding.ActivityPreferenceBinding
 import com.example.eventmatchmaker.ui.activity.ViewModelFactory
+import com.example.eventmatchmaker.ui.activity.login.LoginActivity
 import com.example.eventmatchmaker.ui.activity.main.MainActivity
 import com.example.eventmatchmaker.ui.activity.main.MainViewModel
 import com.example.eventmatchmaker.ui.activity.signup.SignupViewModel
@@ -31,6 +34,8 @@ class PreferenceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPreferenceBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel = ViewModelProvider(this)[SignupViewModel::class.java]
 
         val layoutManagerRecommendation = GridLayoutManager(this, 2)
 
@@ -53,8 +58,10 @@ class PreferenceActivity : AppCompatActivity() {
         val email = intent.getStringExtra("EMAIL_KEY") ?: ""
         val password = intent.getStringExtra("PASSWORD_KEY") ?: ""
 
+        // TODO fix sign up preferences features
+
         binding.btnNext.setOnClickListener {
-            viewModel.register(name, email, password, "adventure",
+            viewModel.register(email, password, name, "adventure",
                 {
                     showRegistrationSuccessDialog(name)
                 },
@@ -67,11 +74,6 @@ class PreferenceActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             finish()
         }
-
-        binding.btnNext.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
     }
 
     private fun showRegistrationSuccessDialog(name: String) {
@@ -82,6 +84,7 @@ class PreferenceActivity : AppCompatActivity() {
                 setTitle(resources.getString(R.string.dialogRegisterSuccess))
                 setMessage(dialogMessage)
                 setPositiveButton(resources.getString(R.string.oke)) { _, _ ->
+                    startActivity(Intent(this@PreferenceActivity, LoginActivity::class.java))
                     finish()
                 }
                 create().show()

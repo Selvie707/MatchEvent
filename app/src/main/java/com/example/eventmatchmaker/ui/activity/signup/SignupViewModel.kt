@@ -13,9 +13,9 @@ class SignupViewModel(private val repository: UserAccountRepository) : ViewModel
     constructor() : this(UserAccountRepository(ApiServiceFactory.apiService))
 
     fun register(
-        name: String,
         email: String,
         password: String,
+        name: String,
         preferenceCategories: String,
         onSuccess: () -> Unit,
         onError: (String) -> Unit
@@ -23,7 +23,7 @@ class SignupViewModel(private val repository: UserAccountRepository) : ViewModel
         isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repository.register(name, email, password, preferenceCategories)
+                val response = repository.register(email, password, name, preferenceCategories)
 
                 if (response.message.equals("User created successfully")) {
                     onSuccess.invoke()
