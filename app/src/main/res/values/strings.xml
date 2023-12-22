@@ -161,8 +161,11 @@
     <string name="group_chat_name">Group Chat Name</string>
 
     <string-array name="category_array">
-        <item>Adventure</item>
-        <item>Sport</item>
-        <item>Option 3</item>
+        <item>adventure</item>
+        <item>creativity</item>
+        <item>sports</item>
+        <item>concert</item>
+        <item>shopping</item>
+        <item>learning</item>
     </string-array>
 </resources>

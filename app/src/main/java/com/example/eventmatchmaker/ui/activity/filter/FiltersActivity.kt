@@ -85,32 +85,31 @@ class FiltersActivity : AppCompatActivity() {
                 binding.etStartDate.text.toString()
             }
 
-            val (startDate, endDate) = splitDateString(getDate)
+//            val (startDate, endDate) = splitDateString(getDate)
 
-            val startDateData = if (startDate == "") {
-                ""
-            } else {
-                startDate + "T00:00:00.000Z"
-            }
-            val startDateCapData = if (endDate == "") {
-                ""
-            } else {
-                endDate + "T00:00:00.000Z"
-            }
+//            val startDateData = if (startDate == "") {
+//                ""
+//            } else {
+//                startDate + "T00:00:00.000Z"
+//            }
+//            val startDateCapData = if (endDate == "") {
+//                ""
+//            } else {
+//                endDate + "T00:00:00.000Z"
+//            }
+
             val minPriceData = binding.tvMinPrice.text.toString().replace(".", "")
             val maxPriceData = binding.tvMaxPrice.text.toString().replace(".", "")
-
-            // TODO delete this
-            Log.d("Testing Filter", "$startDateData, $startDateCapData")
 
             val intent = Intent(this@FiltersActivity, SearchActivity::class.java)
             intent.putExtra("SELECTED_ITEM", selectedItem)
             intent.putExtra("AGE_LIMIT_DATA", ageLimitData)
-            intent.putExtra("START_TIME_DATA", startDateData)
-            intent.putExtra("START_TIME_CAP_DATA", startDateCapData)
+            intent.putExtra("START_TIME_DATA", "")
+            intent.putExtra("START_TIME_CAP_DATA", "")
             intent.putExtra("MIN_PRICE_DATA", minPriceData)
             intent.putExtra("MAX_PRICE_DATA", maxPriceData)
             startActivity(intent)
+            finish()
         }
     }
 
